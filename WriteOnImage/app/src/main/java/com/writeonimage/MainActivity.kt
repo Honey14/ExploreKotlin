@@ -88,7 +88,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
                     val imageBitmap = extras?.get("data") as Bitmap
                     val point = Point(60, 230)
                     val bitmap =
-                        mark(imageBitmap, name, point, Color.WHITE, 150, 10, false)
+                        mark(imageBitmap, name, point, Color.WHITE, 150, 12, false)
                     imageView.setImageBitmap(bitmap)
                 }
             }
@@ -117,7 +117,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
         paint.textSize = size.toFloat()
         paint.isAntiAlias = true
         paint.isUnderlineText = underline
-        paint.setTypeface(Typeface.create(Typeface.DEFAULT, Typeface.BOLD))
+        paint.setTypeface(Typeface.create(Typeface.DEFAULT, Typeface.BOLD_ITALIC))
         canvas.drawText(watermark, location.x.toFloat(), location.y.toFloat(), paint)
         return result
     }
