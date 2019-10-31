@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.CountDownTimer
 import android.util.Log
+import android.view.WindowManager
 import android.widget.Toast
 import kotlinx.android.synthetic.main.activity_main.*
 
@@ -25,7 +26,9 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-//        textView_score.text = String.format(getString(R.string.your_score),score)
+        window.setFlags(
+            WindowManager.LayoutParams.FLAG_FULLSCREEN,
+            WindowManager.LayoutParams.FLAG_FULLSCREEN)
         if(savedInstanceState !=null){
             score = savedInstanceState.getInt(SCORE_KEY)
             timeLeftOnTimer = savedInstanceState.getLong(TIME_LEFT_KEY)
@@ -33,7 +36,6 @@ class MainActivity : AppCompatActivity() {
         }else{
             resetGame()
         }
-
         button_tap.setOnClickListener {
             incrementScore()
         }
@@ -50,7 +52,8 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun restoreGame() {
-        var score_received = "Your Score: $score"
+        button_tap.setImageDrawable(getDrawable(R.drawable.ic_game_controller))
+        var score_received = "$score"
         textView_score.text = score_received
         var restoredTime = "Time Left : " + timeLeftOnTimer / 1000
         text_timer.text = restoredTime
@@ -68,7 +71,8 @@ class MainActivity : AppCompatActivity() {
     }
     private fun resetGame() {
         score = 0
-        textView_score.text = String.format(getString(R.string.your_score), score)
+        button_tap.setImageDrawable(getDrawable(R.drawable.ic_play))
+        textView_score.text = score.toString()
         var initialtimeLeft = initialCountDown / 1000
         text_timer.text = String.format(getString(R.string.time_left), initialtimeLeft)
         countDownTimer = object : CountDownTimer(initialCountDown, countDownInterval) {
@@ -77,6 +81,7 @@ class MainActivity : AppCompatActivity() {
                 var timeleft = millisUntilFinished / 1000
                 val timestring = "Time Left: $timeleft"
                 text_timer.text = timestring
+                circularProgressBar.setProgressWithAnimation(timeleft.toFloat(), 10000)
             }
 
             override fun onFinish() {
@@ -102,8 +107,10 @@ class MainActivity : AppCompatActivity() {
             startGame()
         }
         score = score + 1
-        val newScore = "Your score: $score"
+        val newScore = "$score"
         textView_score.text = newScore
+        button_tap.setImageDrawable(getDrawable(R.drawable.ic_game_controller))
+
     }
 }
 
