@@ -48,7 +48,6 @@ class MainActivity : AppCompatActivity() {
         outState.putInt(SCORE_KEY, score)
         outState.putLong(TIME_LEFT_KEY, timeLeftOnTimer)
         countDownTimer.cancel()
-        Log.d("coundou", (score + timeLeftOnTimer).toString())
     }
 
     private fun restoreGame() {
@@ -60,6 +59,7 @@ class MainActivity : AppCompatActivity() {
         countDownTimer = object : CountDownTimer(timeLeftOnTimer,countDownInterval){
             override fun onTick(millisUntilFinished: Long) {
                 timeLeftOnTimer = millisUntilFinished
+
                 var timeLeft = "Time Left : " + millisUntilFinished/1000
                 text_timer.text = timeLeft
             }
@@ -72,19 +72,29 @@ class MainActivity : AppCompatActivity() {
     private fun resetGame() {
         score = 0
         button_tap.setImageDrawable(getDrawable(R.drawable.ic_play))
+        circularProgressBar.progress = 0F
         textView_score.text = score.toString()
         var initialtimeLeft = initialCountDown / 1000
         text_timer.text = String.format(getString(R.string.time_left), initialtimeLeft)
+        var increase_progress = 50
         countDownTimer = object : CountDownTimer(initialCountDown, countDownInterval) {
             override fun onTick(millisUntilFinished: Long) {
                 timeLeftOnTimer = millisUntilFinished
+
                 var timeleft = millisUntilFinished / 1000
                 val timestring = "Time Left: $timeleft"
                 text_timer.text = timestring
-                circularProgressBar.setProgressWithAnimation(timeleft.toFloat(), 10000)
+//                circularProgressBar.progress = ((initialCountDown-millisUntilFinished)/initialCountDown*100.0).toFloat()
+
+//                circularProgressBar.setProgressWithAnimation(increase_progress.toFloat(),10000)
+                val baseRadius = 20 // base radius is basic radius of circle from which to start animation
+                var custpom = CustomView(this@MainActivity)
+                custpom.updateView(increase_progress + baseRadius)
+                increase_progress++
             }
 
             override fun onFinish() {
+                increase_progress++
                 endGame()
             }
         }

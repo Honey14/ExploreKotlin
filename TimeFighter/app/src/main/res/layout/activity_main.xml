@@ -8,25 +8,38 @@
 
     tools:context=".MainActivity">
 
-    <com.mikhaellopez.circularprogressbar.CircularProgressBar
-        android:id="@+id/circularProgressBar"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:cpb_progress_direction="to_right"
-        app:cpb_progressbar_color="#EC2B4B"
-        app:cpb_progressbar_width="100dp"
-        app:cpb_round_border="false"
-        app:cpb_progress="0"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.45"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:layout_marginEnd="36dp"
-        android:layout_marginStart="36dp"
-        />
-<!--    app:cpb_background_progressbar_color="#E77C8E"-->
-<!--    app:cpb_background_progressbar_width="1dp"-->
+        <com.mikhaellopez.circularprogressbar.CircularProgressBar
+            android:id="@+id/circularProgressBar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:cpb_progress_direction="to_right"
+            app:cpb_progressbar_color="#EC2B4B"
+            app:cpb_progressbar_width="100dp"
+            app:cpb_round_border="false"
+            app:cpb_progress="0"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.45"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:layout_marginEnd="36dp"
+            android:layout_marginStart="36dp"
+            />
+
+<!--    <com.mikhaellopez.circularprogressbar.CircularProgressBar-->
+<!--        android:id="@+id/circularProgressBar"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--       -->
+<!--        app:layout_constraintBottom_toBottomOf="parent"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintHorizontal_bias="0.45"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintTop_toTopOf="parent"-->
+<!--        app:progressbar_color="#F44336"-->
+<!--        app:progressbar_width="10dp" />-->
+    <!--    app:cpb_background_progressbar_color="#E77C8E"-->
+    <!--    app:cpb_background_progressbar_width="1dp"-->
 
     <TextView
         android:id="@+id/text_timer"
@@ -34,9 +47,9 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="40dp"
         android:layout_marginEnd="36dp"
-        android:textSize="20sp"
-        android:textColor="@android:color/white"
         android:text="60"
+        android:textColor="@android:color/white"
+        android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
